@@ -1,42 +1,75 @@
-// var obj = [
-//   {
-//     username: 'sijon20',
-//     email: 'freefiar99@gmail.com',
-//     pass: '12345678'
-// }]
+// sing up system for website using local storage email and password
+function singup() {
+    var user = document.getElementById('username').value;
+    var email = document.getElementById('singupemail').value;
+    var password = document.getElementById('singupPass').value;
+    //var userpass = document.getElementById('username').value + document.getElementById('singupPass').value;
+    var confirmPassword = document.getElementById('confirmPassword').value;
+   // console.log(user, typeof user, email, typeof email, password, typeof password, confirmPassword, typeof confirmPassword);
+    // i dont know why this is not working [if (user == '' && email == '' && password == '' )]
+    if (user == "") {
+        alert("Please fill all the fields");
+    }
+    else if (email == "") {
+        alert("Please fill all the fields");
+    }
+    else if (password == "") {
+        alert("Please fill all the fields");
+    }
+    else {
 
-function addData2() {
-  var username = document.getElementById('username').value;
-  var email = document.getElementById('singupemail').value;
-  var pass = document.getElementById('singuppass').value;
-  //  store data
-  localStorage.setItem('email', email);
-  localStorage.setItem('pass', pass);
-  localStorage.setItem('username', username);
-  alert('saved');
-} 
-function addData() {
-  var loginemail = document.getElementById('loginemail');
-  var loginpass = document.getElementById('loginpass');
-  loginpass = String(loginpass);
-  var pass4 = loginpass;
-  var pass5 = localStorage.getItem('pass')
-  console.log(typeof loginpass , loginpass.value ,pass4 , typeof pass5, pass5 )
-  //  store data
-  // if ( loginemail.value == localStorage.getItem('email') && loginpass == localStorage.getItem('pass')) {
-  //   console.log("succes" );
-  // } else {
-  //   console.log("incorrect", loginemail)
-  // }
+        if (password !== confirmPassword) {
+            alert("Passwords do not match");
+        }
+
+        else if (user === localStorage.getItem('username') || email === localStorage.getItem('email')) {
+            alert("Your account already axist. Login Your account");
+        }
+        else if (user !== localStorage.getItem('usernamme')) {
+            localStorage.setItem('username', user);
+            localStorage.setItem('email', email);
+            localStorage.setItem('password', password);
+            alert("Sign Up Successful");
+        }
 
 
+    }
 }
+// using api for sing up system using http post method
 
-function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-
-}
+// async function singup() {
+//     e.preventDefault();
+//     var user = await document.getElementById('username').value;
+//     var email = await document.getElementById('singupemail').value;
+//     var password = await document.getElementById('singupPass').value;
+//     var confirmPassword = await document.getElementById('confirmPassword').value;
+//     if (user == "") {
+//         alert("Please fill all the fields");
+//     }
+//     else if (email == "") {
+//         alert("Please fill all the fields");
+//     }
+//     else if (password == "") {
+//         alert("Please fill all the fields");
+//     }
+//     else {
+//         if (password !== confirmPassword) {
+//             alert("Passwords do not match");
+//         }
+//         else {
+//             fetch('https://imdb8.p.rapidapi.com/auto-complete', {
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'application/json'
+//                 },
+//                 body: JSON.stringify({
+//                     username: user,
+//                     email: email,
+//                     password: password
+//                 })
+//             }).then(res => res.json())
+//                 .then(data => console.log(data))
+//                 .catch(err => console.log(err));
+//         }
+//     }
+// }
